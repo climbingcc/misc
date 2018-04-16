@@ -21,7 +21,7 @@ public class BinaryTree {
         System.out.println("Hello World!");
 
         //建立二叉树
-        String inputByPreOrder = "ABC#D###EF##GH####";
+        String inputByPreOrder = "ABC#D###EF##GH###";
         //String inputByPreOrder = "AB#D##C##";
         treeRoot = createTreeByPreOrder(treeRoot, inputByPreOrder, 0);
 
@@ -54,6 +54,10 @@ public class BinaryTree {
         System.out.println();
         System.out.println("levelOrder: ");
         levelOrder(treeRoot);
+
+        //高度
+        System.out.println();
+        System.out.println("deep: " + maxDeep(treeRoot));
     }
 
     /**
@@ -213,5 +217,14 @@ public class BinaryTree {
                 queue[++tail] = current.rightChild;
             }
         }
+    }
+
+    public static int maxDeep(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int l = maxDeep(root.leftChild);
+        int r = maxDeep(root.rightChild);
+        return Math.max(l, r) + 1;
     }
 }
